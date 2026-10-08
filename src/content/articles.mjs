@@ -48,19 +48,6 @@ export const articles = [
     todo: "ajouter les photos de l'article original",
   },
   {
-    slug: 'ateliers-onigiri-et-calligraphie-chez-kubota',
-    title: 'Ateliers onigiri et calligraphie chez Kubota',
-    date: '2025-07-16',
-    category: 'Atelier',
-    excerpt: "80 participants pour des ateliers de fin d'année dans une entreprise japonaise de la région parisienne.",
-    body: `
-      <p>Nous avons animé des ateliers de fin d'année dans une entreprise japonaise de la région parisienne, avec 80 participants au total.</p>
-      <p>Au programme : la préparation d'onigiri, les boulettes de riz japonaises, et la calligraphie de lettres et de prénoms au choix de chacun.</p>
-      <p>Avec quelques conseils, tout le monde a réussi de jolis onigiri bien triangulaires… et les a dégustés avec plaisir.</p>`,
-    source: 'http://www.vdejapon-asso.fr/blog/ateliers-onigiri-et-calligraphie-chez-kubota.html',
-    todo: "ajouter les photos de l'article original",
-  },
-  {
     slug: 'expo-manga-2025-lagny-sur-marne',
     title: "Nous avons participé à l'Expo Manga de Lagny-sur-Marne",
     date: '2025-06-16',

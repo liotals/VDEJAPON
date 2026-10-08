@@ -11,7 +11,7 @@ const WORKSHOPS = [
     alt: 'Atelier de calligraphie japonaise au pinceau',
     html: `
       <p>Au collège Jacqueline de Romilly de Magny-le-Hongre, lors d'une semaine consacrée au Japon, les élèves ont découvert la culture japonaise par des recherches, du dessin et nos ateliers de calligraphie, qui les ont particulièrement enthousiasmés.</p>
-      <p>Au Salon du livre et du manga de Magny-le-Hongre, nos quatre ateliers de calligraphie ont tous affiché complet. Et lors d'ateliers de fin d'année en entreprise, 80 participants ont calligraphié les lettres et les prénoms de leur choix.</p>`,
+      <p>Au Salon du livre et du manga de Magny-le-Hongre, nos quatre ateliers de calligraphie ont tous affiché complet.</p>`,
     link: { href: 'actualites/ateliers-calligraphie-2025-college-jacqueline-de-romilly.html', label: 'La semaine du Japon au collège' },
   },
   {

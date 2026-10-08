@@ -17,7 +17,6 @@ export const upcoming = [
 export const past = [
   { iso: '2026-06', when: 'Juin 2026', title: 'Expo Manga 2026', place: 'Lagny-sur-Marne', article: 'expo-manga-2026-lagny-sur-marne' },
   { iso: '2025-07', when: 'Juillet 2025', title: 'Japan Expo 2025 — stand Hiroshima Sightseeing et JR West', place: 'Paris-Nord Villepinte', article: 'japan-expo-2025' },
-  { iso: '2025', when: '2025', title: "Ateliers onigiri et calligraphie en entreprise", place: 'Région parisienne', article: 'ateliers-onigiri-et-calligraphie-chez-kubota' },
   { iso: '2025-06', when: 'Juin 2025', title: 'Expo Manga 2025', place: 'Lagny-sur-Marne', article: 'expo-manga-2025-lagny-sur-marne' },
   { iso: '2025-04-12', when: '12 avril 2025', title: "Visite de l'Assemblée nationale", place: 'Paris', article: 'visite-de-l-assemblee-nationale-le-12-avril-2025' },
   { iso: '2025-03', when: 'Mars 2025', title: 'Semaine du Japon et ateliers de calligraphie', place: 'Collège Jacqueline de Romilly, Magny-le-Hongre', article: 'ateliers-calligraphie-2025-college-jacqueline-de-romilly' },

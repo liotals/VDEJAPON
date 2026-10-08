@@ -36,7 +36,7 @@ site/                         ← le site généré, à déployer
 ```
 
 Pourquoi un générateur ? Un mini-script Node sans dépendance évite de recopier l'en-tête, le menu,
-le pied de page et les métadonnées SEO sur 32 pages ; comme `site/` est versionné, aucun build
+le pied de page et les métadonnées SEO sur une trentaine de pages ; comme `site/` est versionné, aucun build
 n'est nécessaire pour déployer.
 
 ## Modifier le contenu
@@ -131,8 +131,7 @@ Les marqueurs `TODO` sont visibles dans le code (`grep -rn TODO src`). Principau
 
 - Photos de l'ancien site (aucune n'a pu être téléchargée) et textes complets des articles.
 - Contenu des carnets « Fujiyoshida » et « Hiroshima / Miyajima ».
-- Informations sur les prochains cours de japonais (`cours.annonce` dans `src/config.mjs`) ;
-  le format et le tarif affichés (1 h, 30 € / 15 € après réduction d'impôt) viennent de l'ancien site.
+- Informations sur les prochains cours de japonais (`cours.annonce` dans `src/config.mjs`).
 - Prochains rendez-vous de l'agenda.
 - E-mail de contact à confirmer, téléphone éventuel, direction de la publication, hébergeur retenu.
 - Identifiants Formspree, domaine définitif.
