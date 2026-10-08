@@ -15,7 +15,7 @@ export function agenda() {
     nav: 'agenda',
     title: 'Agenda',
     description:
-      "Agenda de l'association Val d'Europe / Japon : cours de japonais, cours de cuisine japonaise, ateliers, salons et sorties à Val d'Europe et en Seine-et-Marne.",
+      "Agenda de l'association Val d'Europe / Japon : cours de japonais, ateliers de calligraphie et d'origami, salons et sorties à Val d'Europe et en Seine-et-Marne.",
     crumbs,
     body: html`
 ${pageHead({

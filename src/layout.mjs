@@ -5,7 +5,7 @@ import { html, esc } from './lib/html.mjs';
 export const NAV = [
   { id: 'association', label: 'Qui sommes-nous ?', short: "L'association", href: 'qui-sommes-nous.html' },
   { id: 'cours', label: 'Cours de japonais', href: 'cours-de-japonais.html' },
-  { id: 'ateliers', label: 'Ateliers & team building', href: 'ateliers-team-building.html' },
+  { id: 'ateliers', label: 'Ateliers', href: 'ateliers.html' },
   { id: 'agenda', label: 'Agenda', href: 'agenda.html' },
   { id: 'actualites', label: 'Actualités', href: 'actualites/index.html' },
   { id: 'carnets', label: 'Carnets de voyages', short: 'Carnets', href: 'carnets-de-voyages/index.html' },
@@ -28,7 +28,7 @@ export const organizationLd = () => ({
   logo: `${config.siteUrl}/assets/img/logo-vde-japon.png`,
   image: `${config.siteUrl}/assets/img/og-default.jpg`,
   description:
-    "Association culturelle franco-japonaise (loi 1901) basée à Esbly, en Seine-et-Marne : cours de japonais, cours de cuisine japonaise, origami, calligraphie, ateliers et team building.",
+    "Association culturelle franco-japonaise (loi 1901) basée à Esbly, en Seine-et-Marne : cours de japonais, ateliers de calligraphie et d'origami, salons et événements autour de la culture japonaise.",
   email: config.email,
   address: {
     '@type': 'PostalAddress',
@@ -38,7 +38,7 @@ export const organizationLd = () => ({
     addressCountry: 'FR',
   },
   areaServed: ["Val d'Europe", 'Seine-et-Marne', 'Île-de-France'],
-  knowsAbout: ['Culture japonaise', 'Cours de japonais', 'Cuisine japonaise', 'Origami', 'Calligraphie japonaise'],
+  knowsAbout: ['Culture japonaise', 'Cours de japonais', 'Origami', 'Calligraphie japonaise'],
   sameAs: [config.facebook],
 });
 
@@ -220,7 +220,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : html`<link rel="canonical
 <link rel="icon" href="${r}assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="${r}assets/img/apple-touch-icon.png">
 <link rel="manifest" href="${r}site.webmanifest">
-<script>document.documentElement.className = 'js';</script>
+<script>document.documentElement.className = 'js is-entering';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${FONTS}">

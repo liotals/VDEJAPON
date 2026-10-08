@@ -33,11 +33,13 @@ export const config = {
     newsletterEndpoint: 'https://formspree.io/f/TODO_NEWSLETTER_ID',
   },
 
-  // État des inscriptions aux cours de japonais (affiché sur l'accueil, la page Cours et l'agenda).
-  // TODO: mettre à jour pour 2026/2027 (l'ancien site indiquait seulement « complet pour 2025/2026 »).
+  // État des cours de japonais (affiché sur l'accueil, la page Cours et l'agenda).
+  // complet: true  → « Complet pour le moment » + l'annonce ci-dessous ;
+  // complet: false → « Inscriptions ouvertes ».
   cours: {
-    saison: '2025/2026',
     complet: true,
+    // TODO: remplacer par les informations sur les prochains cours dès qu'elles sont connues.
+    annonce: 'De nouvelles informations sur les cours seront publiées prochainement.',
   },
 
   // Services tiers soumis à consentement (vide = aucun cookie, aucun bandeau).

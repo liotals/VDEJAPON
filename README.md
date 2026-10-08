@@ -6,6 +6,9 @@ destiné à remplacer l'ancien site e-monsite (vdejapon-asso.fr).
 Site statique : HTML, une feuille de style, un petit fichier JavaScript, sans framework.
 Le dossier **`site/` est le site complet, prêt à être mis en ligne tel quel.**
 
+La navigation est dynamique : les pages s'enchaînent sans rechargement, avec une transition animée
+(voir « Navigation et transitions » plus bas).
+
 ## Arborescence
 
 ```
@@ -21,12 +24,12 @@ src/
   pages/                      une fonction par page (accueil, cours, ateliers, contact…)
   lib/html.mjs                utilitaires (photos, typographie française)
 site/                         ← le site généré, à déployer
-  index.html, qui-sommes-nous.html, cours-de-japonais.html, ateliers-team-building.html,
+  index.html, qui-sommes-nous.html, cours-de-japonais.html, ateliers.html,
   agenda.html, contact.html, mentions-legales.html, merci.html, 404.html
   actualites/                 index.html + une page par article
   carnets-de-voyages/         index.html + une page par carnet
   assets/css/style.css        design system complet (variables, composants)
-  assets/js/main.js           menu mobile, formulaires, apparition au défilement, carte
+  assets/js/main.js           navigation et transitions, menu mobile, formulaires, filtres, carte
   assets/img/                 logo, favicon, image de partage (Open Graph)
   assets/img/photos/          photos du site (à déposer, voir plus bas)
   sitemap.xml, robots.txt, site.webmanifest
@@ -52,7 +55,7 @@ Réglages courants dans `src/config.mjs` :
 | `email`, `facebook` | coordonnées affichées partout |
 | `forms.contactEndpoint`, `forms.newsletterEndpoint` | URL Formspree des formulaires |
 | `forms.provider` | `'formspree'` ou `'netlify'` (Netlify Forms) |
-| `cours.saison`, `cours.complet` | bandeau « Complet pour 2025/2026 » / inscriptions ouvertes |
+| `cours.complet`, `cours.annonce` | bandeau « Complet pour le moment » + message d'annonce, ou « Inscriptions ouvertes » |
 | `consentServices` | services tiers soumis à consentement (vide = aucun bandeau) |
 
 ## Photos
@@ -66,12 +69,30 @@ déposer un fichier WebP (ou JPG) au nom attendu, puis relancer `node build.mjs`
 | `assets/img/photos/accueil.webp` | Accueil (hero) | 4:5 |
 | `assets/img/photos/association.webp` | Qui sommes-nous ? | 4:3 |
 | `assets/img/photos/cours-de-japonais.webp` | Cours de japonais | 4:3 |
-| `assets/img/photos/ateliers-team-building.webp`, `ateliers-onigiri.webp`, `ateliers-calligraphie.webp`, `ateliers-cuisine.webp`, `ateliers-origami.webp` | Ateliers | 4:3 |
+| `assets/img/photos/ateliers-calligraphie.webp`, `ateliers-origami.webp`, `ateliers-evenements.webp` | Ateliers | 4:3 |
 | `assets/img/photos/actualites/<slug>.webp` | une actualité (facultatif) | 3:2 |
 | `assets/img/photos/carnets/<slug>.webp` | un carnet de voyage (facultatif) | 4:5 |
 
 Conseil : 1600 px de large au maximum, compression WebP qualité 80 (par exemple avec squoosh.app).
 `node build.mjs --photos` liste les emplacements encore vides.
+
+## Navigation et transitions
+
+Au clic sur un lien interne, `main.js` charge la page suivante en arrière-plan (préchargée dès le survol
+du lien), puis l'échange avec la page courante sans rechargement :
+
+1. **Sortie** : le contenu s'efface pendant qu'un trait vermillon se trace sous l'en-tête ;
+2. **Entrée** : le trait se retire, le titre de la page monte en cascade et le grand caractère japonais
+   se « trace » de haut en bas, comme au pinceau.
+
+L'en-tête reste immobile, l'adresse, le titre de l'onglet et les boutons Précédent/Suivant du navigateur
+fonctionnent normalement (position de défilement restaurée), le focus et une annonce vocale sont gérés
+pour les lecteurs d'écran. Les caractères japonais des cartes se tracent aussi à leur apparition au
+défilement, et la page Actualités propose un filtre animé par thème.
+
+Amélioration progressive : sans JavaScript, ou si un chargement échoue, le lien s'ouvre normalement.
+Avec le réglage système « réduire les animations », les pages changent instantanément. Les animations se
+règlent dans la section « Transitions de page » de `style.css`.
 
 ## Formulaires (sans serveur)
 
@@ -110,9 +131,8 @@ Les marqueurs `TODO` sont visibles dans le code (`grep -rn TODO src`). Principau
 
 - Photos de l'ancien site (aucune n'a pu être téléchargée) et textes complets des articles.
 - Contenu des carnets « Fujiyoshida » et « Hiroshima / Miyajima ».
-- Sushi Workshop : format, durée, nombre de participants, tarif.
-- Cours de cuisine (dont enfants) : dates, lieu, âge, tarif.
-- Inscriptions 2026/2027 aux cours de japonais (l'ancien site n'indique que « complet pour 2025/2026 »).
+- Informations sur les prochains cours de japonais (`cours.annonce` dans `src/config.mjs`) ;
+  le format et le tarif affichés (1 h, 30 € / 15 € après réduction d'impôt) viennent de l'ancien site.
 - Prochains rendez-vous de l'agenda.
 - E-mail de contact à confirmer, téléphone éventuel, direction de la publication, hébergeur retenu.
 - Identifiants Formspree, domaine définitif.

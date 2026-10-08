@@ -5,9 +5,8 @@ import { formAttributes, honeypot } from '../layout.mjs';
 
 export const SUBJECTS = [
   { value: 'cours', label: 'Cours de japonais' },
-  { value: 'liste-attente', label: "Liste d'attente — cours de japonais" },
-  { value: 'atelier', label: 'Atelier ou team building' },
-  { value: 'cuisine', label: 'Cours de cuisine japonaise' },
+  { value: 'infos-cours', label: 'Être informé des prochains cours' },
+  { value: 'atelier', label: 'Atelier (calligraphie, origami)' },
   { value: 'evenement', label: 'Événement, école ou collectivité' },
   { value: 'autre', label: 'Autre demande' },
 ];
@@ -28,7 +27,7 @@ export function contact() {
     nav: 'contact',
     title: 'Contact',
     description:
-      "Contactez l'association Val d'Europe / Japon à Esbly (77450) : cours de japonais, liste d'attente, ateliers, team building, cours de cuisine japonaise.",
+      "Contactez l'association Val d'Europe / Japon à Esbly (77450) : cours de japonais, ateliers de calligraphie et d'origami, salons et événements.",
     crumbs,
     body: html`
 ${pageHead({
@@ -70,7 +69,7 @@ ${pageHead({
         <div class="field">
           <label for="c-message">Message</label>
           <textarea id="c-message" name="message" rows="7" required minlength="10" aria-describedby="c-message-error c-message-hint"></textarea>
-          <p class="form-hint" id="c-message-hint">Pour une liste d'attente ou un atelier, précisez vos disponibilités ou le nombre de participants.</p>
+          <p class="form-hint" id="c-message-hint">Pour un cours, précisez votre niveau ; pour un atelier, le public et le nombre de participants.</p>
           <p class="field__error" id="c-message-error" data-error-for="c-message" hidden></p>
         </div>
         <input type="hidden" name="_subject" value="Nouveau message depuis le site Val d'Europe / Japon">

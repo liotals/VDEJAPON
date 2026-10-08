@@ -5,22 +5,12 @@
 
 export const upcoming = [
   {
-    when: 'En continu',
-    detail: "jusqu'au 31/12/2027",
+    when: 'Prochainement',
     title: 'Cours de japonais',
     place: 'À domicile sur Val d’Europe ou en ligne',
-    text: "Cours particuliers d'une heure. 30 € le cours, soit 15 € après réduction d'impôt.",
+    text: 'De nouvelles informations sur les cours seront publiées prochainement.',
     status: 'cours',
     link: { href: 'cours-de-japonais.html', label: 'Voir les cours' },
-  },
-  {
-    when: 'Dates à venir',
-    title: 'Cours de cuisine pour enfants',
-    place: 'Val d’Europe', // TODO: confirmer le lieu
-    text: 'Initiation à la cuisine japonaise pour les enfants.',
-    // TODO: dates, horaires, âge et tarif (fiche agenda de l'ancien site non récupérée).
-    todo: 'dates, horaires, âge et tarif des cours de cuisine pour enfants',
-    link: { href: 'contact.html?sujet=cuisine#formulaire', label: 'Se renseigner' },
   },
 ];
 

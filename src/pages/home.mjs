@@ -2,40 +2,40 @@ import { config } from '../config.mjs';
 import { html, photo } from '../lib/html.mjs';
 import { organizationLd } from '../layout.mjs';
 import { sectionHead, newsCard, agendaItem, ctaBlock } from '../components.mjs';
-import { upcoming } from '../content/agenda.mjs';
+import { upcoming, past } from '../content/agenda.mjs';
 
 const ACTIVITIES = [
   {
     kanji: '語',
     reading: 'go · la langue',
     title: 'Cours de japonais',
-    text: "Cours particuliers d'une heure, à domicile sur Val d'Europe ou en ligne, avec des horaires adaptés à chacun.",
+    text: "Cours particuliers à domicile sur Val d'Europe ou en ligne. Complets pour le moment : de nouvelles informations arrivent prochainement.",
     href: 'cours-de-japonais.html',
     link: 'Les cours de japonais',
   },
   {
-    kanji: '食',
-    reading: 'shoku · la table',
-    title: 'Cuisine et origami',
-    text: 'Cours de cuisine japonaise, y compris pour les enfants, et initiations à l’origami, à l’école comme lors de nos manifestations.',
-    href: 'ateliers-team-building.html#cuisine',
-    link: 'Cuisine et origami',
-  },
-  {
     kanji: '書',
     reading: 'sho · l’écriture',
-    title: 'Calligraphie et ateliers',
-    text: 'Ateliers de calligraphie et d’onigiri pour les salons, les établissements scolaires et les entreprises.',
-    href: 'ateliers-team-building.html#calligraphie',
-    link: 'Nos ateliers',
+    title: 'Calligraphie',
+    text: 'Ateliers de calligraphie pour les établissements scolaires, les salons et les entreprises.',
+    href: 'ateliers.html#calligraphie',
+    link: 'Les ateliers de calligraphie',
   },
   {
-    kanji: '和',
-    reading: 'wa · l’harmonie',
-    title: 'Team building',
-    text: 'Le Sushi Workshop : un atelier sushi pour réunir vos équipes autour de la cuisine japonaise.',
-    href: 'ateliers-team-building.html#team-building',
-    link: 'Le Sushi Workshop',
+    kanji: '折',
+    reading: 'ori · plier',
+    title: 'Origami',
+    text: 'Initiations à l’art du pliage de papier, à l’école comme lors de nos manifestations.',
+    href: 'ateliers.html#origami',
+    link: 'Les ateliers d’origami',
+  },
+  {
+    kanji: '祭',
+    reading: 'matsuri · la fête',
+    title: 'Salons et événements',
+    text: 'Japan Expo, Expo Manga, marchés et festivals : retrouvez-nous tout au long de l’année.',
+    href: 'agenda.html',
+    link: 'Nos rendez-vous',
   },
 ];
 
@@ -47,7 +47,7 @@ export function home({ articles }) {
     nav: 'home',
     title: "Val d'Europe / Japon — Association franco-japonaise en Seine-et-Marne",
     description:
-      "Association culturelle franco-japonaise à Esbly (77) : cours de japonais, cours de cuisine japonaise, origami, calligraphie, ateliers et team building en Seine-et-Marne.",
+      "Association culturelle franco-japonaise à Esbly (77) : cours de japonais, ateliers de calligraphie et d'origami, salons et événements autour de la culture japonaise en Seine-et-Marne.",
     jsonLd: [organizationLd()],
     body: html`
 <section class="hero" aria-labelledby="hero-titre">
@@ -77,7 +77,7 @@ export function home({ articles }) {
 
 <section class="section" aria-labelledby="activites-titre">
   <div class="container">
-    ${sectionHead({ kicker: 'Nos activités', title: 'Apprendre, cuisiner, créer ensemble', id: 'activites-titre', intro: 'Pour les familles, les adultes, les étudiants en japonais, les entreprises, les collectivités et les établissements scolaires.' })}
+    ${sectionHead({ kicker: 'Nos activités', title: 'Apprendre, créer, se rencontrer', id: 'activites-titre', intro: 'Pour les familles, les adultes, les étudiants en japonais, les entreprises, les collectivités et les établissements scolaires.' })}
     <ul class="shoji activities" role="list">
       ${ACTIVITIES.map(
         (a) => html`
@@ -105,16 +105,22 @@ export function home({ articles }) {
 <section class="section section--rule" aria-labelledby="agenda-titre">
   <div class="container split">
     ${sectionHead({ kicker: 'Agenda', title: 'Prochains <span class="nowrap">rendez-vous</span>', id: 'agenda-titre', intro: 'Les prochaines dates de salons, d’ateliers et de sorties sont annoncées ici et sur notre page Facebook.', link: { href: 'agenda.html', label: "Voir l'agenda" } })}
-    <ul class="agenda" role="list">
-      ${upcoming.slice(0, 3).map((item) => agendaItem(root, item))}
-    </ul>
+    <div>
+      <ul class="agenda" role="list">
+        ${upcoming.slice(0, 2).map((item) => agendaItem(root, item))}
+      </ul>
+      <h3 class="agenda__subhead">Récemment</h3>
+      <ul class="agenda agenda--past" role="list">
+        ${past.slice(0, 2).map((e) => agendaItem(root, { ...e, link: { href: `actualites/${e.article}.html`, label: 'Lire' } }))}
+      </ul>
+    </div>
   </div>
 </section>
 
 ${ctaBlock(root, {
   kicker: 'Contact',
   title: 'Une question, un projet d’atelier ?',
-  text: 'Cours de japonais, atelier en entreprise ou à l’école, participation à votre événement : écrivez-nous. Pour suivre nos activités, inscrivez-vous à notre lettre d’information.',
+  text: 'Cours de japonais, atelier à l’école ou en entreprise, participation à votre événement : écrivez-nous. Pour suivre nos activités, inscrivez-vous à notre lettre d’information.',
   primary: { href: 'contact.html', label: 'Nous écrire' },
   secondary: { href: '#newsletter', label: 'Recevoir nos actualités' },
 })}

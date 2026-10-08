@@ -22,7 +22,7 @@
 <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="manifest" href="../site.webmanifest">
-<script>document.documentElement.className = 'js';</script>
+<script>document.documentElement.className = 'js is-entering';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -49,7 +49,7 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Navigation principale" data-nav>
       <ul class="site-nav__list">
-        <li><a href="../qui-sommes-nous.html"><span class="site-nav__long">Qui sommes-nous ?</span><span class="site-nav__short">L’association</span></a></li><li><a href="../cours-de-japonais.html">Cours de japonais</a></li><li><a href="../ateliers-team-building.html">Ateliers &amp; team building</a></li><li><a href="../agenda.html">Agenda</a></li><li><a href="../actualites/index.html" aria-current="page">Actualités</a></li><li><a href="../carnets-de-voyages/index.html"><span class="site-nav__long">Carnets de voyages</span><span class="site-nav__short">Carnets</span></a></li><li><a href="../contact.html" class="site-nav__contact">Contact</a></li>
+        <li><a href="../qui-sommes-nous.html"><span class="site-nav__long">Qui sommes-nous ?</span><span class="site-nav__short">L’association</span></a></li><li><a href="../cours-de-japonais.html">Cours de japonais</a></li><li><a href="../ateliers.html">Ateliers</a></li><li><a href="../agenda.html">Agenda</a></li><li><a href="../actualites/index.html" aria-current="page">Actualités</a></li><li><a href="../carnets-de-voyages/index.html"><span class="site-nav__long">Carnets de voyages</span><span class="site-nav__short">Carnets</span></a></li><li><a href="../contact.html" class="site-nav__contact">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -73,24 +73,35 @@
 
 <div class="section">
   <div class="container">
-    <nav class="chips-nav" aria-label="Années">
-      <ul class="chips" role="list">
-        <li><a class="chip" href="#annee-2026">2026</a></li><li><a class="chip" href="#annee-2025">2025</a></li><li><a class="chip" href="#annee-2024">2024</a></li>
-      </ul>
-    </nav>
+    <div class="news-tools">
+      <!-- Filtre par catégorie : affiché par main.js (inutile sans JavaScript). -->
+      <div class="filters" data-filters hidden>
+        <p class="filters__label" id="filtre-titre">Thème</p>
+        <div class="chips" role="group" aria-labelledby="filtre-titre">
+          <button class="chip" type="button" data-filter="" aria-pressed="true">Tout <span class="chip__count">15</span></button>
+          <button class="chip" type="button" data-filter="Salon" aria-pressed="false">Salons <span class="chip__count">6</span></button><button class="chip" type="button" data-filter="Cours" aria-pressed="false">Cours <span class="chip__count">1</span></button><button class="chip" type="button" data-filter="Atelier" aria-pressed="false">Ateliers <span class="chip__count">3</span></button><button class="chip" type="button" data-filter="Sortie" aria-pressed="false">Sorties <span class="chip__count">2</span></button><button class="chip" type="button" data-filter="Événement" aria-pressed="false">Événements <span class="chip__count">3</span></button>
+        </div>
+        <p class="visually-hidden" data-filter-status aria-live="polite"></p>
+      </div>
+      <nav class="chips-nav" aria-label="Années">
+        <ul class="chips" role="list">
+          <li data-year-chip="2026"><a class="chip" href="#annee-2026">2026</a></li><li data-year-chip="2025"><a class="chip" href="#annee-2025">2025</a></li><li data-year-chip="2024"><a class="chip" href="#annee-2024">2024</a></li>
+        </ul>
+      </nav>
+    </div>
     
-    <section class="news-year" aria-labelledby="annee-2026">
+    <section class="news-year" data-year="2026" aria-labelledby="annee-2026">
       <h2 class="news-year__label" id="annee-2026">2026</h2>
       <div class="cards">
         
-<article class="card reveal">
+<article class="card reveal" data-category="Salon">
   
   <p class="card__meta"><time datetime="2026-06-15">15 juin 2026</time><span aria-hidden="true">·</span><span>Salon</span></p>
   <h3 class="card__title"><a href="../actualites/expo-manga-2026-lagny-sur-marne.html">Expo Manga 2026 à <span class="nowrap">Lagny-sur-Marne</span></a></h3>
   <p class="card__excerpt">Beau temps et visiteurs nombreux pour l’édition 2026 de l’Expo Manga de Lagny-sur-Marne.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Cours">
   
   <p class="card__meta"><span>2026</span><span aria-hidden="true">·</span><span>Cours</span></p>
   <h3 class="card__title"><a href="../actualites/resultats-jlpt-decembre-2025.html">Résultats de l’examen JLPT de décembre 2025</a></h3>
@@ -99,53 +110,53 @@
 </article>
       </div>
     </section>
-    <section class="news-year" aria-labelledby="annee-2025">
+    <section class="news-year" data-year="2025" aria-labelledby="annee-2025">
       <h2 class="news-year__label" id="annee-2025">2025</h2>
       <div class="cards">
         
-<article class="card reveal">
+<article class="card reveal" data-category="Salon">
   
   <p class="card__meta"><time datetime="2025-07-20">20 juillet 2025</time><span aria-hidden="true">·</span><span>Salon</span></p>
   <h3 class="card__title"><a href="../actualites/japan-expo-2025.html">Japan Expo 2025</a></h3>
   <p class="card__excerpt">Quatre jours sur le stand Hiroshima Sightseeing et JR West : les passionnés du Japon sont toujours plus nombreux.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Atelier">
   
   <p class="card__meta"><time datetime="2025-07-16">16 juillet 2025</time><span aria-hidden="true">·</span><span>Atelier</span></p>
   <h3 class="card__title"><a href="../actualites/ateliers-onigiri-et-calligraphie-chez-kubota.html">Ateliers onigiri et calligraphie chez Kubota</a></h3>
   <p class="card__excerpt">80 participants pour des ateliers de fin d’année dans une entreprise japonaise de la région parisienne.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Salon">
   
   <p class="card__meta"><time datetime="2025-06-16">16 juin 2025</time><span aria-hidden="true">·</span><span>Salon</span></p>
   <h3 class="card__title"><a href="../actualites/expo-manga-2025-lagny-sur-marne.html">Nous avons participé à l’Expo Manga de <span class="nowrap">Lagny-sur-Marne</span></a></h3>
   <p class="card__excerpt">L’association était présente à l’Expo Manga de Lagny-sur-Marne en juin 2025.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Sortie">
   
   <p class="card__meta"><time datetime="2025-04-28">28 avril 2025</time><span aria-hidden="true">·</span><span>Sortie</span></p>
   <h3 class="card__title"><a href="../actualites/visite-de-l-assemblee-nationale-le-12-avril-2025.html">Visite de l’Assemblée nationale le 12 avril 2025</a></h3>
   <p class="card__excerpt">Une visite rendue possible grâce à la députée Ersilia Soudais, élève de l’association.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Atelier">
   
   <p class="card__meta"><time datetime="2025-03-22">22 mars 2025</time><span aria-hidden="true">·</span><span>Atelier</span></p>
   <h3 class="card__title"><a href="../actualites/ateliers-calligraphie-2025-college-jacqueline-de-romilly.html">Ateliers de calligraphie au collège Jacqueline de Romilly</a></h3>
   <p class="card__excerpt">Une semaine du Japon au collège de Magny-le-Hongre : recherches, dessins et ateliers de calligraphie.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Salon">
   
   <p class="card__meta"><span>2025</span><span aria-hidden="true">·</span><span>Salon</span></p>
   <h3 class="card__title"><a href="../actualites/salon-du-livre-et-du-manga-de-magny-le-hongre.html">Nous avons participé au Salon du livre et du manga de <span class="nowrap">Magny-le-Hongre</span></a></h3>
   <p class="card__excerpt">Quatre ateliers de calligraphie, tous complets.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Sortie">
   
   <p class="card__meta"><time datetime="2025-01-31">31 janvier 2025</time><span aria-hidden="true">·</span><span>Sortie</span></p>
   <h3 class="card__title"><a href="../actualites/sortie-de-debut-d-annee-2025.html">Sortie de début d’année 2025</a></h3>
@@ -154,46 +165,46 @@
 </article>
       </div>
     </section>
-    <section class="news-year" aria-labelledby="annee-2024">
+    <section class="news-year" data-year="2024" aria-labelledby="annee-2024">
       <h2 class="news-year__label" id="annee-2024">2024</h2>
       <div class="cards">
         
-<article class="card reveal">
+<article class="card reveal" data-category="Événement">
   
   <p class="card__meta"><time datetime="2024-12-10">10 décembre 2024</time><span aria-hidden="true">·</span><span>Événement</span></p>
   <h3 class="card__title"><a href="../actualites/marche-de-noel-de-montry-2024.html">Nous avons participé au marché de Noël de Montry 2024</a></h3>
   <p class="card__excerpt">Cette année encore, nous étions au marché de Noël de Montry : un moment spectaculaire.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Salon">
   
   <p class="card__meta"><time datetime="2024-10-08">8 octobre 2024</time><span aria-hidden="true">·</span><span>Salon</span></p>
   <h3 class="card__title"><a href="../actualites/salon-du-sake-2024.html">Salon du saké 2024</a></h3>
   <p class="card__excerpt">Un beau succès : merci à toutes celles et à tous ceux qui sont venus !</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Événement">
   
   <p class="card__meta"><time datetime="2024-09-23">23 septembre 2024</time><span aria-hidden="true">·</span><span>Événement</span></p>
   <h3 class="card__title"><a href="../actualites/journees-europeennes-du-patrimoine-2024.html">Journées européennes du patrimoine 2024</a></h3>
   <p class="card__excerpt">Nous avons eu le plaisir de faire découvrir la culture japonaise.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Salon">
   
   <p class="card__meta"><span>2024</span><span aria-hidden="true">·</span><span>Salon</span></p>
   <h3 class="card__title"><a href="../actualites/japan-expo-2024.html">Japan Expo 2024</a></h3>
   <p class="card__excerpt">De belles rencontres, avec des habitants de Fujiyoshida et les visiteurs du salon.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Événement">
   
   <p class="card__meta"><time datetime="2024-03-24">24 mars 2024</time><span aria-hidden="true">·</span><span>Événement</span></p>
   <h3 class="card__title"><a href="../actualites/festival-du-printemps-2024-a-esbly.html">Festival du Printemps 2024 à Esbly</a></h3>
   <p class="card__excerpt">Un festival sur le thème du Japon, avec food trucks japonais et musique traditionnelle : un grand succès.</p>
   <p class="card__more" aria-hidden="true">Lire l’article <span>→</span></p>
 </article>
-<article class="card reveal">
+<article class="card reveal" data-category="Atelier">
   
   <p class="card__meta"><time datetime="2024-01-19">19 janvier 2024</time><span aria-hidden="true">·</span><span>Atelier</span></p>
   <h3 class="card__title"><a href="../actualites/atelier-origami-a-esbly.html">Atelier origami à Esbly</a></h3>
@@ -261,7 +272,7 @@
         <h2 class="site-footer__heading">Le site</h2>
         <ul>
           <li><a href="../index.html">Accueil</a></li>
-          <li><a href="../qui-sommes-nous.html">Qui sommes-nous ?</a></li><li><a href="../cours-de-japonais.html">Cours de japonais</a></li><li><a href="../ateliers-team-building.html">Ateliers &amp; team building</a></li><li><a href="../agenda.html">Agenda</a></li><li><a href="../actualites/index.html">Actualités</a></li><li><a href="../carnets-de-voyages/index.html">Carnets de voyages</a></li><li><a href="../contact.html">Contact</a></li>
+          <li><a href="../qui-sommes-nous.html">Qui sommes-nous ?</a></li><li><a href="../cours-de-japonais.html">Cours de japonais</a></li><li><a href="../ateliers.html">Ateliers</a></li><li><a href="../agenda.html">Agenda</a></li><li><a href="../actualites/index.html">Actualités</a></li><li><a href="../carnets-de-voyages/index.html">Carnets de voyages</a></li><li><a href="../contact.html">Contact</a></li>
         </ul>
       </nav>
       <div class="site-footer__contact">

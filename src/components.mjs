@@ -37,7 +37,7 @@ export const articleDate = (a) =>
 export function newsCard(root, a, headingLevel = 3) {
   const h = `h${headingLevel}`;
   return html`
-<article class="card reveal">
+<article class="card reveal" data-category="${esc(a.category)}">
   ${hasPhoto(`actualites/${a.photo ?? a.slug}`) ? photo({ root, key: `actualites/${a.photo ?? a.slug}`, alt: a.title, ratio: '3/2', className: 'card__media' }) : ''}
   <p class="card__meta">${articleDate(a)}<span aria-hidden="true">·</span><span>${esc(a.category)}</span></p>
   <${h} class="card__title"><a href="${root}actualites/${a.slug}.html">${keep(a.title)}</a></${h}>
@@ -48,18 +48,18 @@ export function newsCard(root, a, headingLevel = 3) {
 
 // Bandeau d'état des inscriptions aux cours de japonais (piloté par config.cours).
 export function coursStatus(root, { compact = false } = {}) {
-  const { saison, complet } = config.cours;
+  const { complet, annonce } = config.cours;
   if (!complet) {
     return html`<div class="notice${compact ? ' notice--compact' : ''}">
-      <p class="badge">Inscriptions ouvertes · ${esc(saison)}</p>
+      <p class="badge">Inscriptions ouvertes</p>
       <p class="notice__text">Des places sont disponibles : contactez-nous pour convenir de vos horaires.</p>
       <p><a class="btn btn--primary" href="${root}contact.html?sujet=cours#formulaire">S'inscrire</a></p>
     </div>`;
   }
   return html`<div class="notice${compact ? ' notice--compact' : ''}">
-    <p class="badge">Complet pour ${esc(saison)}</p>
-    <p class="notice__text">Les cours particuliers sont complets pour l'année ${esc(saison)}. Inscrivez-vous sur la liste d'attente : nous vous recontacterons dès qu'une place se libère.</p>
-    <p><a class="btn btn--primary" href="${root}contact.html?sujet=liste-attente#formulaire">Rejoindre la liste d'attente</a></p>
+    <p class="badge">Complet pour le moment</p>
+    <p class="notice__text">Pour l'instant, les cours sont complets. ${esc(annonce)} Laissez-nous vos coordonnées pour être prévenu dès leur parution.</p>
+    <p><a class="btn btn--primary" href="${root}contact.html?sujet=infos-cours#formulaire">Être informé des prochains cours</a></p>
   </div>`;
 }
 
@@ -73,7 +73,7 @@ export function agendaItem(root, item) {
     <h3 class="agenda__title">${esc(item.title)}</h3>
     ${item.place ? html`<p class="agenda__place">${esc(item.place)}</p>` : ''}
     ${item.text ? html`<p class="agenda__text">${esc(item.text)}</p>` : ''}
-    ${isCours && config.cours.complet ? html`<p class="badge badge--quiet">Complet pour ${esc(config.cours.saison)} · liste d'attente</p>` : ''}
+    ${isCours && config.cours.complet ? html`<p class="badge badge--quiet">Complet pour le moment</p>` : ''}
   </div>
   ${item.link ? html`<a class="link-arrow agenda__link" href="${root}${item.link.href}">${esc(item.link.label)}<span class="visually-hidden"> : ${esc(item.title)}</span><span aria-hidden="true"> →</span></a>` : ''}
 </li>`;

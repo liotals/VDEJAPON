@@ -4,6 +4,7 @@ import { pageHead, newsCard, articleDate, pager, ctaBlock } from '../components.
 import { breadcrumb, publicUrl } from '../layout.mjs';
 
 const yearOf = (a) => (a.date ?? a.sortDate).slice(0, 4);
+const CATEGORY_LABELS = { Salon: 'Salons', Atelier: 'Ateliers', Sortie: 'Sorties', Cours: 'Cours', Événement: 'Événements' };
 
 export function actualitesIndex({ articles }) {
   const root = '../';
@@ -12,6 +13,7 @@ export function actualitesIndex({ articles }) {
     { label: 'Actualités', path: 'actualites/index.html' },
   ];
   const years = [...new Set(articles.map(yearOf))];
+  const categories = [...new Set(articles.map((a) => a.category))];
   return {
     path: 'actualites/index.html',
     root,
@@ -33,14 +35,27 @@ ${pageHead({
 
 <div class="section">
   <div class="container">
-    <nav class="chips-nav" aria-label="Années">
-      <ul class="chips" role="list">
-        ${years.map((y) => html`<li><a class="chip" href="#annee-${y}">${y}</a></li>`)}
-      </ul>
-    </nav>
+    <div class="news-tools">
+      <!-- Filtre par catégorie : affiché par main.js (inutile sans JavaScript). -->
+      <div class="filters" data-filters hidden>
+        <p class="filters__label" id="filtre-titre">Thème</p>
+        <div class="chips" role="group" aria-labelledby="filtre-titre">
+          <button class="chip" type="button" data-filter="" aria-pressed="true">Tout <span class="chip__count">${articles.length}</span></button>
+          ${categories.map(
+            (c) => html`<button class="chip" type="button" data-filter="${c}" aria-pressed="false">${CATEGORY_LABELS[c] ?? c} <span class="chip__count">${articles.filter((a) => a.category === c).length}</span></button>`,
+          )}
+        </div>
+        <p class="visually-hidden" data-filter-status aria-live="polite"></p>
+      </div>
+      <nav class="chips-nav" aria-label="Années">
+        <ul class="chips" role="list">
+          ${years.map((y) => html`<li data-year-chip="${y}"><a class="chip" href="#annee-${y}">${y}</a></li>`)}
+        </ul>
+      </nav>
+    </div>
     ${years.map(
       (y) => html`
-    <section class="news-year" aria-labelledby="annee-${y}">
+    <section class="news-year" data-year="${y}" aria-labelledby="annee-${y}">
       <h2 class="news-year__label" id="annee-${y}">${y}</h2>
       <div class="cards">
         ${articles.filter((a) => yearOf(a) === y).map((a) => newsCard(root, a, 3))}

@@ -586,6 +586,11 @@ sup { line-height: 0; }
 
 .chip:hover { border-color: var(--sumi); background: var(--kinu); }
 
+button.chip { gap: 8px; background: none; color: var(--sumi); font: inherit; font-size: var(--fs-small); cursor: pointer; transition: all var(--ease); }
+.chip[aria-pressed="true"] { background: var(--sumi); border-color: var(--sumi); color: var(--washi); }
+.chip__count { font-size: var(--fs-xs); color: var(--hai-fonce); }
+.chip[aria-pressed="true"] .chip__count { color: var(--kinu); }
+
 /* Fil d'Ariane */
 .breadcrumb ol {
   display: flex;
@@ -624,6 +629,9 @@ sup { line-height: 0; }
 .agenda__place { margin: 0; font-size: var(--fs-small); color: var(--hai-fonce); }
 .agenda__text { margin: 8px 0 0; font-size: var(--fs-small); }
 .agenda__link { white-space: nowrap; }
+.agenda__subhead { margin: 48px 0 0; padding-bottom: 12px; font-family: var(--font-text); font-size: var(--fs-xs); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+.agenda--past { border-top-color: var(--kinu); }
+.agenda--past .agenda__title { font-size: 1.1875rem; }
 
 /* Données en panneaux (shoji) */
 /* Colonnes explicites : jamais de case vide en fin de grille. */
@@ -813,8 +821,11 @@ sup { line-height: 0; }
 }
 
 /* Actualités */
-.chips-nav { margin-bottom: 56px; }
-.news-year + .news-year { margin-top: 72px; }
+.news-tools { display: grid; gap: 16px; margin-bottom: 56px; }
+@media (min-width: 900px) { .news-tools { grid-template-columns: minmax(0, 1fr) auto; align-items: center; } }
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.filters__label { margin: 0; font-size: var(--fs-xs); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+.news-year:not([hidden]) ~ .news-year:not([hidden]) { margin-top: 72px; }
 
 .news-year__label {
   display: flex;
@@ -1050,13 +1061,77 @@ button[disabled] { opacity: 0.6; cursor: progress; }
 .reveal-ready .reveal { opacity: 0; transform: translateY(8px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
 .reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 
+/* Les caractères japonais se « tracent » de haut en bas, comme au pinceau, quand ils apparaissent. */
+.reveal-ready .reveal :is(.activity__kanji, .frame__kanji) { clip-path: inset(0 0 100% 0); }
+.reveal-ready .reveal.is-visible :is(.activity__kanji, .frame__kanji) { animation: ink 1000ms var(--ease-brush) 150ms both; }
+
+/* Transitions de page ------------------------------------------------------
+   html.is-leaving  : le contenu s'efface, un trait vermillon traverse l'écran sous l'en-tête ;
+   html.is-entering : le trait se retire, l'en-tête de page monte en cascade, les caractères se tracent.
+   L'en-tête du site reste immobile d'une page à l'autre. Classes posées par main.js. */
+:root {
+  --ease-brush: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-rise: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes ink { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.is-leaving main,
+.is-leaving .site-footer {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 240ms ease-in, transform 240ms ease-in;
+}
+
+.route-line {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  z-index: 51;
+  width: 100%;
+  height: 2px;
+  background: var(--shu);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.is-leaving .route-line { transform: scaleX(1); transition: transform 380ms var(--ease-brush); }
+.is-entering.is-routing .route-line { transform: scaleX(0); transform-origin: right center; transition: transform 520ms var(--ease-brush) 40ms; }
+
+.is-entering main { animation: fade 420ms ease-out both; }
+.is-entering .site-footer { animation: fade 600ms ease-out 200ms both; }
+
+.is-entering :is(.hero__text, .page-head__text, .page-head--article .container) > * { animation: rise 640ms var(--ease-rise) both; }
+.is-entering :is(.hero__text, .page-head__text, .page-head--article .container) > :nth-child(2) { animation-delay: 70ms; }
+.is-entering :is(.hero__text, .page-head__text, .page-head--article .container) > :nth-child(3) { animation-delay: 140ms; }
+.is-entering :is(.hero__text, .page-head__text, .page-head--article .container) > :nth-child(4) { animation-delay: 210ms; }
+.is-entering :is(.hero__text, .page-head__text, .page-head--article .container) > :nth-child(n + 5) { animation-delay: 280ms; }
+
+.is-entering :is(.page-head__kanji, .hero__media .frame__kanji, .tategaki) { animation: ink 1100ms var(--ease-brush) 180ms both; }
+.is-entering :is(.page-head__reading, .hero__media .frame__label) { animation: fade 500ms ease-out 900ms both; }
+.is-entering .hero__media .frame { animation: fade 700ms ease-out 80ms both; }
+.is-entering main > :nth-child(2) { animation: rise 720ms var(--ease-rise) 240ms both; }
+
+/* Filtre des actualités : les cartes retenues réapparaissent. */
+.card.is-filtered { animation: rise 420ms var(--ease-rise) both; }
+
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready .reveal { opacity: 1; transform: none; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .reveal-ready .reveal :is(.activity__kanji, .frame__kanji) { clip-path: none; }
+  .route-line { display: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
 }
 
 @media print {

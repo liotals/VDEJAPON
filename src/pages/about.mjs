@@ -11,9 +11,9 @@ const MISSIONS = [
 ];
 
 const PUBLICS = [
-  { title: 'Familles et enfants', text: 'Cours de cuisine pour les enfants, origami, découvertes lors des fêtes et festivals locaux.' },
+  { title: 'Familles et enfants', text: 'Origami, calligraphie et découvertes lors des fêtes et festivals locaux.' },
   { title: 'Adultes et étudiants en japonais', text: 'Cours particuliers à domicile ou en ligne, sorties culturelles et rencontres lors des salons.' },
-  { title: 'Entreprises', text: 'Team building « Sushi Workshop », ateliers onigiri et calligraphie pour vos équipes.' },
+  { title: 'Entreprises', text: 'Ateliers de calligraphie pour découvrir la culture japonaise en équipe.' },
   { title: 'Collectivités et établissements scolaires', text: 'Ateliers de calligraphie et d’origami, semaines du Japon, participation aux salons et événements.' },
 ];
 
@@ -75,7 +75,7 @@ ${pageHead({
       <h2 id="activites-titre">Cours, ateliers et rencontres</h2>
     </div>
     <div class="prose reveal">
-      <p>Nous proposons des <a href="cours-de-japonais.html">cours particuliers de japonais</a>, à domicile sur Val d'Europe ou en ligne, ainsi que des <a href="ateliers-team-building.html">ateliers</a> : cuisine japonaise (y compris pour les enfants), origami, calligraphie, onigiri et team building « Sushi Workshop ».</p>
+      <p>Nous proposons des <a href="cours-de-japonais.html">cours particuliers de japonais</a>, à domicile sur Val d'Europe ou en ligne, ainsi que des <a href="ateliers.html">ateliers</a> de calligraphie et d'origami. Les cours sont complets pour le moment : de nouvelles informations seront publiées prochainement.</p>
       <p>Tout au long de l'année, l'association participe aux salons et aux fêtes de la région : Japan Expo, Expo Manga de Lagny-sur-Marne, Salon du livre et du manga de Magny-le-Hongre, marché de Noël de Montry, Festival du Printemps d'Esbly ou encore Journées européennes du patrimoine.</p>
       <p>Nous organisons aussi des sorties, comme une exposition d'estampes à la Maison de la culture du Japon à Paris ou la visite de l'Assemblée nationale en avril 2025. Et nos élèves présentent le JLPT, le test officiel de japonais : en décembre 2025, nos trois candidats l'ont réussi.</p>
       <p><a class="link-arrow" href="actualites/index.html">Lire nos actualités<span aria-hidden="true"> →</span></a></p>

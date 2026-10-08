@@ -7,8 +7,8 @@ const FAQ = [
     q: 'Les cours sont-ils complets ?',
     a: () =>
       config.cours.complet
-        ? `Oui, pour l'année ${config.cours.saison}. Inscrivez-vous sur la <a href="contact.html?sujet=liste-attente#formulaire">liste d'attente</a> : nous vous recontacterons dès qu'une place se libère.`
-        : `Des places sont disponibles pour l'année ${config.cours.saison} : <a href="contact.html?sujet=cours#formulaire">contactez-nous</a>.`,
+        ? `Oui, pour l'instant. ${config.cours.annonce} Pour être prévenu, <a href="contact.html?sujet=infos-cours#formulaire">laissez-nous vos coordonnées</a> ou inscrivez-vous à la <a href="#newsletter">lettre d'information</a>.`
+        : 'Des places sont disponibles : <a href="contact.html?sujet=cours#formulaire">contactez-nous</a> pour convenir de vos horaires.',
   },
   {
     q: 'Peut-on suivre les cours en ligne ?',
@@ -138,13 +138,15 @@ ${pageHead({
 </section>
 
 ${ctaBlock(root, {
-  kicker: 'Inscription',
-  title: config.cours.complet ? 'Rejoindre la liste d’attente' : 'S’inscrire à un cours',
+  kicker: config.cours.complet ? 'Prochainement' : 'Inscription',
+  title: config.cours.complet ? 'Être informé des prochains cours' : 'S’inscrire à un cours',
   text: config.cours.complet
-    ? `Les cours sont complets pour ${config.cours.saison}. Laissez-nous vos coordonnées : nous vous recontacterons dès qu’une place se libère.`
+    ? `Les cours sont complets pour le moment. ${config.cours.annonce} Laissez-nous vos coordonnées ou inscrivez-vous à la lettre d’information pour être prévenu.`
     : 'Indiquez-nous vos disponibilités et votre niveau : nous reviendrons vers vous.',
-  primary: { href: `contact.html?sujet=${config.cours.complet ? 'liste-attente' : 'cours'}#formulaire`, label: config.cours.complet ? "Rejoindre la liste d'attente" : "S'inscrire" },
-  secondary: { href: 'contact.html', label: 'Poser une question' },
+  primary: config.cours.complet
+    ? { href: 'contact.html?sujet=infos-cours#formulaire', label: 'Être informé des prochains cours' }
+    : { href: 'contact.html?sujet=cours#formulaire', label: "S'inscrire" },
+  secondary: config.cours.complet ? { href: '#newsletter', label: 'Recevoir la lettre d’information' } : { href: 'contact.html', label: 'Poser une question' },
 })}
 `,
   };
