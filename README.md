@@ -3,6 +3,10 @@
 Nouveau site de l'association culturelle franco-japonaise **VAL D'EUROPE / JAPON** (Esbly, 77450),
 destiné à remplacer l'ancien site e-monsite (vdejapon-asso.fr).
 
+> **Site hébergé sur e-monsite ?** Le dossier [`e-monsite/`](e-monsite/LISEZ-MOI.md) contient une feuille de
+> style à coller dans e-monsite (Configuration > Apparence > Personnaliser > « Modifier / Ajouter du code CSS »)
+> pour appliquer ce design au site existant, sans JavaScript.
+
 Site statique : HTML, une feuille de style, un petit fichier JavaScript, sans framework.
 Le dossier **`site/` est le site complet, prêt à être mis en ligne tel quel.**
 
