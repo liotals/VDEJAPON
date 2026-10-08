@@ -1,0 +1,13 @@
+{
+  "name": "vdejapon-site",
+  "private": true,
+  "description": "Site statique de l'association Val d'Europe / Japon",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "npx serve site"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
